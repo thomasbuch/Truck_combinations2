@@ -3,35 +3,39 @@ import csv
 limit = 500
 count = 0
 
-single = [0,1,2,3,4,5,6,7,8,9,10]
-singletwo = [0,1,2,3,4,5,6,7,8,9,10]
-bdouble = [0,1,2,3,4,5,6,7,8,9,10]
+single_a = [0,1,2,3,4,5,6,7,8,9,10]
+single_b = [0,1,2,3,4,5,6,7,8,9,10]
+single_c = [0,1,2,3,4,5,6,7,8,9,10]
+bdouble_a = [0,1,2,3,4,5,6,7,8,9,10]
+bdouble_b = [0,1,2,3,4,5,6,7,8,9,10]
+bdouble_c = [0,1,2,3,4,5,6,7,8,9,10]
+rigid_a = [0,1,2,3,4,5,6,7,8,9,10]
 extra = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 total_combinations = [["single_a","single_b","bdouble_a","standalone","total_pallets"]]
 
-spallet = 0
-stwopallet = 0
-bpallet = 0
+sapallet = 0
+sbpallet = 0
+bapallet = 0
 epallet = 0
 tpallet = 0
 
-for s in single:
-    if s != 0:
-        spallet += 22
-    tpallet += spallet
+for sa in single_a:
+    if sa != 0:
+        sapallet = 22
+    tpallet += sapallet
     firstround = tpallet
     if tpallet < limit:
-        for stwo in singletwo:
-            if stwo != 0:
-                stwopallet = 24
-            tpallet += stwopallet
+        for sb in single_b:
+            if sb != 0:
+                sbpallet = 24
+            tpallet += sbpallet
             secondround = tpallet
             if tpallet < limit:
-                for b in bdouble:
-                    if b != 0:
-                        bpallet = 36
-                    tpallet += bpallet
+                for ba in bdouble_a:
+                    if ba != 0:
+                        bapallet = 36
+                    tpallet += bapallet
                     thirdround = tpallet
                     if tpallet < limit:
                         for e in extra:
@@ -39,41 +43,42 @@ for s in single:
                                 epallet = 1
                             tpallet += epallet
                             if tpallet < limit:
-                                total_combinations.append([s,stwo,b,e,tpallet])
-                                print([s,stwo,b,e])
+                                total_combinations.append([sa,sb,ba,e,tpallet])
+                                print([sa,sb,ba,e])
                                 print(tpallet)
                             else:
                                 print("BREAK Extra")
                                 tpallet = thirdround
-                                stwopallet = 0
-                                bpallet = 0
+                                sapallet = 0
+                                sbpallet = 0
+                                bapallet = 0
                                 epallet = 0
                                 break
-                        epallet = 0
                         tpallet = thirdround
                     else:
                         print("BREAK b")
                         tpallet = secondround
-                        stwopallet = 0
-                        bpallet = 0
+                        sapallet = 0
+                        sbpallet = 0
+                        bapallet = 0
                         epallet = 0
                         break
                 tpallet = secondround
-                epallet = 0
             else:
                 print("BREAK s2")
                 tpallet = firstround
-                stwopallet = 0
-                bpallet = 0
+                sapallet = 0
+                sbpallet = 0
+                bapallet = 0
                 epallet = 0
                 break
         tpallet = firstround
     else:
         print("BREAK s1")
         tpallet = 0
-        spallet = 0
-        stwopallet = 0
-        bpallet = 0
+        sapallet = 0
+        sbpallet = 0
+        bapallet = 0
         epallet = 0
         break
     tpallet = 0
