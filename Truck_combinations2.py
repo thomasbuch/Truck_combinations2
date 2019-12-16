@@ -1,12 +1,14 @@
-limit = 100
+import csv
+
+limit = 500
 count = 0
 
 single = [0,1,2,3,4,5,6,7,8,9,10]
 singletwo = [0,1,2,3,4,5,6,7,8,9,10]
 bdouble = [0,1,2,3,4,5,6,7,8,9,10]
-extra = [0,1,2,3,4,5,6,7,8,9,10]
+extra = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
-total_combinations = []
+total_combinations = [["single_a","single_b","bdouble_a","standalone","total_pallets"]]
 
 spallet = 0
 stwopallet = 0
@@ -15,7 +17,8 @@ epallet = 0
 tpallet = 0
 
 for s in single:
-    spallet = s*22
+    if s != 0:
+        spallet += 22
     tpallet += spallet
     firstround = tpallet
     if tpallet < limit:
@@ -46,6 +49,8 @@ for s in single:
                                 bpallet = 0
                                 epallet = 0
                                 break
+                        epallet = 0
+                        tpallet = thirdround
                     else:
                         print("BREAK b")
                         tpallet = secondround
@@ -62,33 +67,25 @@ for s in single:
                 bpallet = 0
                 epallet = 0
                 break
+        tpallet = firstround
+    else:
+        print("BREAK s1")
+        tpallet = 0
+        spallet = 0
+        stwopallet = 0
+        bpallet = 0
+        epallet = 0
+        break
+    tpallet = 0
 
 print(total_combinations)
 
 print(len(total_combinations))
 
+def save_to_csv(total_combinations):
+    with open('test.csv', 'w', errors='replace', newline='') as csvFile:
+        writer = csv.writer(csvFile)
+        writer.writerows(total_combinations)
+    csvFile.close()
 
-#for s in single:
-#    tpalletcount = 0
-#    spalletcount = 0
-#    bpalletcount = 0
-#    combination = []
-#    spalletcount += s * 24
-#    tpalletcount += spalletcount
-#    print(tpalletcount)
-#    if tpalletcount < limit:
-#        combination.append(s)
-#        for b in bdouble:
-#            bpalletcount += b * 36
-#            if bpalletcount + tpalletcount < limit:
-#                print(str(bpalletcount)+"text")
-#                combination.append(b)
-#                total_combinations.append(combination)
-#                combination = []
-#            else:
-#                break
-#        print(combination)
-#        total_combinations.append(combination)
-#        print(total_combinations)
-#    else:
-#        break
+save_to_csv(total_combinations)
