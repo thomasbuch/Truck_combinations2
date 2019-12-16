@@ -20,9 +20,11 @@ bapallet = 0
 epallet = 0
 tpallet = 0
 
+zeroround = 0
+
 for sa in single_a:
     if sa != 0:
-        sapallet = 22
+        sapallet = sa*22
     tpallet += sapallet
     firstround = tpallet
     if tpallet < limit:
@@ -54,6 +56,7 @@ for sa in single_a:
                                 bapallet = 0
                                 epallet = 0
                                 break
+                        epallet = 0
                         tpallet = thirdround
                     else:
                         print("BREAK b")
@@ -64,6 +67,7 @@ for sa in single_a:
                         epallet = 0
                         break
                 tpallet = secondround
+                bapallet = 0
             else:
                 print("BREAK s2")
                 tpallet = firstround
@@ -73,6 +77,7 @@ for sa in single_a:
                 epallet = 0
                 break
         tpallet = firstround
+        sbpallet = 0
     else:
         print("BREAK s1")
         tpallet = 0
@@ -81,7 +86,8 @@ for sa in single_a:
         bapallet = 0
         epallet = 0
         break
-    tpallet = 0
+    tpallet = zeroround
+    sapallet = 0
 
 print(total_combinations)
 
