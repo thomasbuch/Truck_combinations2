@@ -18,7 +18,7 @@ bdouble_b_mezz = [0,1,2,3,4,5,6,7,8,9,10]
 bdouble_c_mezz = [0,1,2,3,4,5,6,7,8,9,10]
 extra = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
-total_combinations = [["single_a","single_b","single_c","bdouble_a","bdouble_b","bdouble_c","rigid_a","single_a_mezz","standalone","total_pallets"]]
+total_combinations = [["single_a","single_b","single_c","bdouble_a","bdouble_b","bdouble_c","rigid_a","single_a_mezz","bdouble_c_mezz","standalone","total_pallets"]]
 
 sapallet = 0
 sbpallet = 0
@@ -28,6 +28,7 @@ bbpallet = 0
 bcpallet = 0
 rapallet = 0
 sampallet = 0
+bcmpallet = 0
 epallet = 0
 tpallet = 0
 
@@ -77,21 +78,43 @@ for sa in single_a:
                                                     if tpallet < limit:
                                                         for sam in single_a_mezz:
                                                             if sam != 0:
-                                                                sampallet = 44
+                                                                sampallet = 48
                                                             tpallet += sampallet
-                                                            e_round = tpallet
+                                                            bcm_round = tpallet
                                                             if tpallet < limit:
-                                                                for e in extra:
-                                                                    if e != 0:
-                                                                        epallet = 1
-                                                                    tpallet += epallet
+                                                                for bcm in bdouble_c_mezz:
+                                                                    if bcm != 0:
+                                                                        bcmpallet = 72
+                                                                    tpallet += bcmpallet
+                                                                    e_round = tpallet
                                                                     if tpallet < limit:
-                                                                        total_combinations.append([sa,sb,sc,ba,bb,bc,ra,sam,e,tpallet])
-                                                                        print([sa,sb,sc,ba,bb,bc,ra,sam,e])
-                                                                        print(tpallet)
-                                                                    else:
-                                                                        print("BREAK Extra")
+                                                                        for e in extra:
+                                                                            if e != 0:
+                                                                                epallet = 1
+                                                                            tpallet += epallet
+                                                                            if tpallet < limit:
+                                                                                total_combinations.append([sa,sb,sc,ba,bb,bc,ra,sam,bcm,e,tpallet])
+                                                                                print([sa,sb,sc,ba,bb,bc,ra,sam,bcm,e])
+                                                                                print(tpallet)
+                                                                            else:
+                                                                                print("BREAK Extra")
+                                                                                tpallet = e_round
+                                                                                sapallet = 0
+                                                                                sbpallet = 0
+                                                                                scpallet = 0
+                                                                                bapallet = 0
+                                                                                bbpallet = 0
+                                                                                bcpallet = 0
+                                                                                rapallet = 0
+                                                                                sampallet = 0
+                                                                                bcmpallet = 0
+                                                                                epallet = 0
+                                                                                break
+                                                                        epallet = 0
                                                                         tpallet = e_round
+                                                                    else:
+                                                                        print("BREAK bcmm")
+                                                                        tpallet = bcm_round
                                                                         sapallet = 0
                                                                         sbpallet = 0
                                                                         scpallet = 0
@@ -100,10 +123,11 @@ for sa in single_a:
                                                                         bcpallet = 0
                                                                         rapallet = 0
                                                                         sampallet = 0
+                                                                        bcmpallet = 0
                                                                         epallet = 0
                                                                         break
-                                                                epallet = 0
-                                                                tpallet = e_round
+                                                                bcmpallet = 0
+                                                                tpallet = bcm_round
                                                             else:
                                                                 print("BREAK sam")
                                                                 tpallet = sam_round
@@ -115,6 +139,7 @@ for sa in single_a:
                                                                 bcpallet = 0
                                                                 rapallet = 0
                                                                 sampallet = 0
+                                                                bcmpallet = 0
                                                                 epallet = 0
                                                                 break
                                                         tpallet = sam_round
@@ -130,6 +155,7 @@ for sa in single_a:
                                                         bcpallet = 0
                                                         rapallet = 0
                                                         sampallet = 0
+                                                        bcmpallet = 0
                                                         epallet = 0
                                                         break
                                                 tpallet = ra_round
@@ -145,6 +171,7 @@ for sa in single_a:
                                                 bcpallet = 0
                                                 rapallet = 0
                                                 sampallet = 0
+                                                bcmpallet = 0
                                                 epallet = 0
                                                 break
                                         tpallet = bc_round
@@ -160,6 +187,7 @@ for sa in single_a:
                                         bcpallet = 0
                                         rapallet = 0
                                         sampallet = 0
+                                        bcmpallet = 0
                                         epallet = 0
                                         break
                                 tpallet = bb_round
@@ -175,6 +203,7 @@ for sa in single_a:
                                 bcpallet = 0
                                 rapallet = 0
                                 sampallet = 0
+                                bcmpallet = 0
                                 epallet = 0
                                 break
                         tpallet = ba_round
@@ -190,6 +219,7 @@ for sa in single_a:
                         bcpallet = 0
                         rapallet = 0
                         sampallet = 0
+                        bcmpallet = 0
                         epallet = 0
                         break
                 tpallet = sc_round
@@ -205,6 +235,7 @@ for sa in single_a:
                 bcpallet = 0
                 rapallet = 0
                 sampallet = 0
+                bcmpallet = 0
                 epallet = 0
                 break
         tpallet = sb_round
@@ -220,6 +251,7 @@ for sa in single_a:
         bcpallet = 0
         rapallet = 0
         sampallet = 0
+        bcmpallet = 0
         epallet = 0
         break
     tpallet = sa_round
